@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<style>
+    fieldset {
+        width:60vw;
+        margin-left:20vw;
+        text-align:center;
+        font-size:20px;
+    }
+    input {
+        font-size:20px;
+        border-color:black;
+    }
+    textarea {
+        border:2px solid black;
+    }
+</style>
+<body>
+    <fieldset>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" onfocus="this.style.borderColor = 'black'"><br><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" onfocus="this.style.borderColor = 'black'"><br><br>
+        <label for="msg">Message:</label><br>
+        <textarea id="msg" rows="15" cols="100" onfocus="this.style.borderColor = 'black'"></textarea><br><br>
+        <button id="submit" onclick="validate()">Submit</button>
+    </fieldset>
+</body>
+<script>
+    function validate() {
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let message = document.getElementById("msg").value;
+        let isValid = true;
+
+        for (let i = 0; i < 10; i++) {
+            if (name == "" || name.includes(i)) {
+                document.getElementById("name").style.borderColor = "red";
+                isValid = false;
+            }
+        }
+        if (email == "" || email.includes("@") == false || email.includes(".") == false || email.length <= 4) {
+            document.getElementById("email").style.borderColor = "red";
+                isValid = false;
+        }
+        if (message.length == 0) {
+            document.getElementById("msg").style.borderColor = "red";
+                isValid = false;
+        }
+        if (isValid == true) {
+            location.reload();
+        }
+    }
+</script>
+</html>
